@@ -1,3 +1,4 @@
+# docker-compose file for setting up an instance of PostgreSQL
 services:
   pgdatabase:
     image: postgres:13
@@ -17,10 +18,3 @@ services:
       ports:
         - "8080:80"
 
-docker run -it \
-  -e POSTGRES_USER="root" \
-  -e POSTGRES_PASSWORD="root" \
-  -e POSTGRES_DB="ny_taxi" \
-  -v ny_taxi_postgres_data:var:lib:postgresql/data \
-  -p 5432:5432
-postgres:13
