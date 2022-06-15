@@ -128,9 +128,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 ny_taxi_postgres_data/
-<<<<<<< HEAD
 .csv
 .parquet
 .DS_Store
-=======
->>>>>>> cbd535131ece239e001acfd747954d0bcd8b5f2b
+
