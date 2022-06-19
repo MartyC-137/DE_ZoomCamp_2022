@@ -132,3 +132,6 @@ ny_taxi_postgres_data/
 .parquet
 .DS_Store
 .terraform/
+
+# Airflow logs
+logs/
