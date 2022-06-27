@@ -14,8 +14,8 @@ import pyarrow.parquet as pq
 PROJECT_ID = os.environ.get("GCP_PROJECT_ID")
 BUCKET = os.environ.get("GCP_GCS_BUCKET")
 
-# 
 dataset_file = "yellow_tripdata_2021-01.parquet"
+# dataset_file = "yellow_tripdata_2021-01.csv"
 dataset_url = f"https://s3.amazonaws.com/nyc-tlc/trip+data/{dataset_file}"
 path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
 # parquet_file = dataset_file.replace('.csv', '.parquet')
@@ -101,7 +101,7 @@ with DAG(
             "tableReference": {
                 "projectId": PROJECT_ID,
                 "datasetId": BIGQUERY_DATASET,
-                "tableId": "testing",
+                "tableId": "external_table",
             },
             "externalDataConfiguration": {
                 "sourceFormat": "PARQUET",
