@@ -26,8 +26,19 @@ docker pull emacski/tensorflow-serving:latest
 
 # this starts the container but doesnt work
 docker run -t --rm -p 8500:8500 `
--v `pwd`/serving_dir/tip_model `
+-v `pwd`/serving_dir/tip_model:/models/tip_model `
 -e MODEL_NAME=tip_model emacski/tensorflow-serving &
+
+[[ -d `pwd`/serving_dir/tip_model ]] && echo "This directory exists!"
+
+
+docker run -t --rm -p 8500:8500 -v `
+/Users/martinpalkovic/Documents/repos/DE_ZoomCamp/Week3_BigQuery/serving_dir/tip_model,`
+-e MODEL_NAME=tip_model emacski/tensorflow-serving &
+
+# From StackOverflow
+docker run -p 8500:8500 --mount type=bind,source=`pwd`/serving_dir/tip_model,target=/models/tip_model -e MODEL_NAME=tip_model -t emacski/tensorflow-serving 
+
 
 # this doesnt work at all
 docker run -p 8500:8500 --network="host" --mount type=bind,source=./Week3_BigQuery/serving_dir/tip_model,target=/models/tip_model -e MODEL_NAME=tip_model -t tensorflow/serving &
