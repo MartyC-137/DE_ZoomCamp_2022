@@ -53,7 +53,6 @@ with DAG(
                     "tableId": f"{colour}_{DATASET}_external_table",
                 },
                 "externalDataConfiguration": {
-                    "autodetect": "True",
                     "sourceFormat": f"{INPUT_FILETYPE.upper()}",
                     "sourceUris": [f"gs://{BUCKET}/{colour}/*"],
                 },
