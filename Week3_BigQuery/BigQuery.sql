@@ -1,3 +1,21 @@
+-- Query public available table
+SELECT station_id, name FROM
+    bigquery-public-data.new_york_citibike.citibike_stations
+LIMIT 100;
+
+-- Creating external table referring to gcs path
+CREATE OR REPLACE EXTERNAL TABLE data-eng-zoomcamp-353222.trips_data_all.fhv_tripdata
+OPTIONS (
+  format = 'PARQUET',
+  uris = ['gs://dtc_data_lake_data-eng-zoomcamp-353222/raw/fhv_tripdata/*.parquet']
+);
+
+-- Table from FHV data
+CREATE OR REPLACE TABLE data-eng-zoomcamp-353222.trips_data_all.fhv_tripdata_partitoned
+PARTITION BY
+  DATE(pickup_datetime) AS
+SELECT * EXCEPT (PULocationID, DOLocationID) FROM data-eng-zoomcamp-353222.trips_data_all.external_fhv_tripdata;
+
 -- Create a non partitioned table from external table
 CREATE OR REPLACE TABLE data-eng-zoomcamp-353222.trips_data_all.yellow_tripdata_non_partitoned AS
 SELECT * FROM data-eng-zoomcamp-353222.trips_data_all.external_yellow_tripdata;
