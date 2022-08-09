@@ -135,3 +135,5 @@ ny_taxi_postgres_data/
 
 # Airflow logs
 logs/
+.json
+*.json
