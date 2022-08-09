@@ -17,3 +17,6 @@ CREATE OR REPLACE TABLE data-eng-zoomcamp-353222.trips_data_all.fhv_tripdata_par
     AS
     SELECT * EXCEPT (PULocationID, DOLocationID) 
         FROM data-eng-zoomcamp-353222.trips_data_all.external_fhv_tripdata;
+
+-- Question 4 
+SELECT COUNT(*) FROM data-eng-zoomcamp-353222.trips_data_all.fhv_tripdata_partitoned_clustered;
