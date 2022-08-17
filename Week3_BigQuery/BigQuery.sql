@@ -12,9 +12,10 @@ OPTIONS (
 
 -- Table from FHV data
 CREATE OR REPLACE TABLE data-eng-zoomcamp-353222.trips_data_all.fhv_tripdata_partitoned
-PARTITION BY
-  DATE(pickup_datetime) AS
-SELECT * EXCEPT (PULocationID, DOLocationID) FROM data-eng-zoomcamp-353222.trips_data_all.external_fhv_tripdata;
+    PARTITION BY DATE(pickup_datetime)
+    CLUSTER BY  dispatching_base_num
+    AS
+    SELECT * EXCEPT (PULocationID, DOLocationID) FROM data-eng-zoomcamp-353222.trips_data_all.external_fhv_tripdata;
 
 -- Create a non partitioned table from external table
 CREATE OR REPLACE TABLE data-eng-zoomcamp-353222.trips_data_all.yellow_tripdata_non_partitoned AS
